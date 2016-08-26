@@ -1,0 +1,21 @@
+<p> Hi <%= @user.first_name %> !</p>
+
+
+<h2>Here are the organization you may join</h2>
+
+<% @details.each do |o| %>
+ <a href="/groups/<%= o.id %>"><p> Organisation name: <%= o.name %><p></a>
+<p>Organisation description:<%=  o.description %></p>
+<p>number of Members <%= o.groups.count %></p>
+<%end%>
+
+
+
+<h2>Create a new organisation</h2>
+<form action="/organisations/<%= @user.id %>/create" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="user_id" value="<%= @user.id %>">
+<input type="text" name="name">
+<input type="text" name="description">
+<input type="submit" value="create">
+</form>

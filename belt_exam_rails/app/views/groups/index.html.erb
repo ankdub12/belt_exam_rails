@@ -1,0 +1,21 @@
+<p><a href="/users/<%= @user.id %>">Dashboard</a></p>
+
+<p><%= @organisation.name %></p>
+<p><%= @organisation.description %></p>
+
+<p>Created By: 
+<%if  @user.first_name == current_user %>
+<%= YOU %>
+<%else%>
+<%= @user.first_name %></p>
+<%end%>
+
+<% @group.each do |o| %>
+<form action="/groups/<%= @organisation_id %>/new" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="organisation_id" value="<%= @organisation_id %>">
+	<input type="submit" value="Join_Group">
+</form>
+<%end%>
+
+
